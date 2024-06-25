@@ -5,5 +5,14 @@
             "blog": "Blog",
             "about": "O mnie"
         }
+    },
+    "about_me": {
+        "first_paragraph": "Cześć! Nazywam się Jakub Rejch i jestem pasjonatem programowania, specjalizującym się w frontendzie oraz fullstack development. Od czterech lat działam w branży IT, a obecnie pełnię rolę Senior Lead Developera. Moja przygoda z kodowaniem zaczęła się od intensywnej, samodzielnej nauki – przez 11 miesięcy poświęcałem 8-10 godzin dziennie na doskonalenie swoich umiejętności.",
+        "second_paragraph": "Przez ostatnie lata zdobywałem doświadczenie na różnych stanowiskach, począwszy od Junior React Developera, poprzez Software Engineer, aż do mojej obecnej roli. Jestem szczególnie dumny z mojego wkładu w firmie, dla której pracuję – stworzenie i zarządzanie nową stroną internetową oraz niemal całkowite zaangażowanie w budowanie frontendu. Implementacja systemów tłumaczeń oraz stworzenie CI/CD w celu przyspieszenia deploymentu to jedne z moich kluczowych osiągnięć.",
+        "third_paragraph": "Moje główne umiejętności obejmują React,JavaScript i Docker, a także znajomość Python, Django, MySQL i PHP. Programowanie jest dla mnie nie tylko pracą, ale prawdziwą pasją. Fascynuje mnie możliwość przekształcania liter i cyfr w funkcjonalne aplikacje, które dostarczają realne produkty i doświadczenia użytkownikom.",
+        "fourth_paragraph": "Prywatnie pasjonuję się wędkarstwem muchowym i squashem. Uważam, że najważniejsze w pracy są sumienność, odpowiedzialność i uczciwość. Wiedza techniczna jest ważna, ale kluczowe jest, aby potrafić skutecznie i odpowiedzialnie ją wykorzystywać. Stawiam na transparentność w pracy zespołowej i otwarte komunikowanie problemów oraz przeszkód.",
+        "fifth_paragraph": "W przyszłości chciałbym pogłębić swoją wiedzę na temat konteneryzacji aplikacji na poziomie produkcyjnym oraz doświadczyć pracy w biurze, aby móc na własnej skórze poczuć, jak to jest być częścią dynamicznego zespołu na co dzień.",
+        "sixth_paragraph": "Zapraszam do kontaktu i współpracy!",
+        "seventh_paragraph": "Jakub Rejch"
     }
 }

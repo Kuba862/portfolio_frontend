@@ -25,24 +25,34 @@ export const Pre_about_section = styled.div`
 
 export const My_section = styled.div`
   display: flex;
+  justify-content: center;
   margin: 150px 0;
 `;
 
 export const My_section_text = styled.div`
+  display: flex;
+  flex-direction: column;
   font-size: 1.5rem;
   padding: 1rem;
-  width: 50%;
+  width: 25%;
+  margin-left: 15%;
   p {
     margin: 1rem;
     text-align: justify;
+    font-size: 1.2rem;
   }
 `;
 
 export const My_section_image = styled.div`
+  display: flex;
+  justify-content: center;
   width: 50%;
+  margin-top: 25px;
   img {
-    width: 50%;
-    height: 100%;
+    position: sticky;
+    top: 50px;
+    width: 40%;
+    height: 50%;
     object-fit: cover;
     border-radius: 15px;
   }
@@ -58,5 +68,5 @@ export const Image_under_my_section = styled.div`
 `;
 
 export const Career_steps_section = styled.div`
-background-color: ${COLORS.grey500};
+  background-color: ${COLORS.grey500};
 `;

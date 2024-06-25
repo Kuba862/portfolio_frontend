@@ -61,4 +61,15 @@ font-weight: 700;
     outline: none;
     border: 2px solid ${COLORS.yellow500};
 }
-`
+`;
+
+export const Login_icon = styled.a`
+    position: absolute;
+    top: 1.5rem;
+    right: 10rem;
+    color: white;
+    transition: .2s ease-in-out;
+    &:hover {
+        color: ${COLORS.yellow500};
+    }
+`;
