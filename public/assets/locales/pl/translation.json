@@ -1,0 +1,9 @@
+{
+    "header": {
+        "navbar": {
+            "portfolio": "Portfolio",
+            "blog": "Blog",
+            "about": "O mnie"
+        }
+    }
+}
