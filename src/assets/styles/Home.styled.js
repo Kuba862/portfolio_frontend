@@ -59,14 +59,12 @@ export const My_section_image = styled.div`
 `;
 
 export const Image_under_my_section = styled.div`
+position: relative;
   width: 100%;
-  height: 10vh;
-  background-image: url(${Image_3});
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  height: 20vh;
 `;
 
 export const Career_steps_section = styled.div`
-  background-color: ${COLORS.grey500};
+  display: flex;
+  justify-content: center;
 `;

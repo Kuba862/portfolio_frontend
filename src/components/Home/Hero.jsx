@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { motion, useAnimation } from 'framer-motion';
 import { Hero_style } from '../../assets/styles/Hero.styled';
 import image_5 from '../../assets/images/abstract/5.WEBP';
+import { ParallaxBanner } from 'react-scroll-parallax';
 
 const Hero = () => {
   const controls = useAnimation();
@@ -28,6 +29,12 @@ const Hero = () => {
   }, [controls]);
   return (
     <>
+    <ParallaxBanner layers={[
+      {
+        image: image_5,
+        speed: -20
+      }
+    ]}>
       <Hero_style>
         <motion.div
           initial={{ opacity: 0 }}
@@ -37,6 +44,7 @@ const Hero = () => {
           <img src={image_5} alt="background" />
         </motion.div>
       </Hero_style>
+      </ParallaxBanner>
     </>
   );
 };

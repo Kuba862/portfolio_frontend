@@ -10,7 +10,6 @@ padding: 1rem;
 background-color: ${COLORS.black500};
 color: white;
 text-align: center;
-box-shadow: 0 0 10px 5px ${COLORS.black500};
 `
 
 export const Logo = styled.div`
@@ -63,7 +62,7 @@ font-weight: 700;
 }
 `;
 
-export const Login_icon = styled.a`
+export const Login_icon = styled.span`
     position: absolute;
     top: 1.5rem;
     right: 10rem;

@@ -4,13 +4,17 @@ import {
   Pre_about_section,
   My_section,
   My_section_image,
-  Image_under_my_section,
-  Career_steps_section
+  Career_steps_section,
 } from '../assets/styles/Home.styled';
 import { MainContext } from '../context/MainContext';
 import Hero from '../components/Home/Hero';
 import myImage from '../assets/images/me_2.webp';
 import About_me from '../components/Home/About_me';
+import { FaRegSquare } from 'react-icons/fa';
+import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
+import { COLORS } from '../utils/Vars';
+import ImageUnderMySection from '../components/Home/Image_under_my_section';
+import Skills from '../components/Home/Skills';
 
 const HomePage = () => {
   const { posts, t } = useContext(MainContext);
@@ -18,20 +22,47 @@ const HomePage = () => {
   return (
     <>
       <Home_style>
-        <Hero />
-        <Pre_about_section>
-          <My_section>
-            <About_me />
-            <My_section_image>
-              <img src={myImage} alt="Jakub Rejch" />
-            </My_section_image>
-          </My_section>
-        </Pre_about_section>
-        <Image_under_my_section />
-        <Career_steps_section>
-        <h3>My Skills</h3>
-          <div></div>
-        </Career_steps_section>
+        <ParallaxProvider>
+          <Hero />
+          <Pre_about_section>
+            <My_section>
+              <About_me />
+              <My_section_image>
+                <img src={myImage} alt="Jakub Rejch" />
+              </My_section_image>
+            </My_section>
+          </Pre_about_section>
+          <ImageUnderMySection />
+          <Parallax
+            translateX={['-100px', '600px']}
+            scale={[0.75, 1]}
+            rotate={[-180, 0]}
+            easing="easeInQuad"
+          >
+            <FaRegSquare
+              style={{
+                fill: COLORS.yellow500,
+                position: 'absolute',
+                width: '30px',
+              }}
+            />
+          </Parallax>
+          <Parallax
+            translateX={['100px', '-600px']}
+            scale={[0.75, 1]}
+            rotate={[180, 0]}
+            easing="easeInQuad"
+          >
+            <FaRegSquare
+              style={{
+                fill: COLORS.yellow500,
+                position: 'absolute',
+                width: '20px'
+              }}
+            />
+          </Parallax>
+            <Skills />
+        </ParallaxProvider>
       </Home_style>
     </>
   );
