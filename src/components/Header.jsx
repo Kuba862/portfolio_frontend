@@ -7,6 +7,7 @@ import {
 import { MainContext } from '../context/MainContext';
 import Language_selector from './Language_selector';
 import Login from './Home/Login';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const { t } = useContext(MainContext);
@@ -14,8 +15,8 @@ const Header = () => {
     <Header_style>
       <Logo />
       <Navigation>
-        <li>{t('header.navbar.portfolio')}</li>
-        <li>{t('header.navbar.blog')}</li>
+        <Link to="/" >{t('header.navbar.portfolio')}</Link>
+        <Link to="/blog" >{t('header.navbar.blog')}</Link>
         {/* <li>{t('header.navbar.about')}</li> */}
       </Navigation>
         <Login />

@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const Hero_style = styled.div`
-div {
     height: 50vh;
     img {
         width: 100vw;
@@ -9,5 +8,4 @@ div {
         object-fit: cover;
         object-position: bottom;
     }
-}
 `;

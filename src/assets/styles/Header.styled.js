@@ -29,12 +29,14 @@ justify-content: center;
 align-items: center;
 list-style: none;
 padding: 1rem;
-li {
+a {
     margin: 0 1rem;
     cursor: pointer;
     text-transform: uppercase;
+    text-decoration: none;
     font-weight: 700;
     letter-spacing: 1px;
+    color: #dcdcdc;
     &:hover {
         color: ${COLORS.yellow500};
     }

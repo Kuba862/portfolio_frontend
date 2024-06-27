@@ -11,6 +11,8 @@ import Hero from '../components/Home/Hero';
 import myImage from '../assets/images/me_2.webp';
 import About_me from '../components/Home/About_me';
 import { FaRegSquare } from 'react-icons/fa';
+import { LuTriangle } from "react-icons/lu";
+import { IoTriangleOutline } from "react-icons/io5";
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { COLORS } from '../utils/Vars';
 import ImageUnderMySection from '../components/Home/Image_under_my_section';
@@ -56,6 +58,36 @@ const HomePage = () => {
             <FaRegSquare
               style={{
                 fill: COLORS.yellow500,
+                position: 'absolute',
+                width: '20px'
+              }}
+            />
+          </Parallax>
+          <Parallax
+            translateX={['200px', '-200px']}
+            translateY={['-100px', '100px']}
+            scale={[0.75, 1]}
+            rotate={[180, 0]}
+            easing="easeInQuad"
+          >
+            <IoTriangleOutline
+              style={{
+                fill: COLORS.yellow200,
+                position: 'absolute',
+                width: '20px'
+              }}
+            />
+          </Parallax>
+          <Parallax
+            translateX={['200px', '200px']}
+            translateY={['0px', '-50px']}
+            scale={[0.75, 1]}
+            rotate={[180, 0]}
+            easing="easeInQuad"
+          >
+            <IoTriangleOutline
+              style={{
+                fill: COLORS.violet400,
                 position: 'absolute',
                 width: '20px'
               }}
