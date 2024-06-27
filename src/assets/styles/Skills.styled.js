@@ -91,6 +91,7 @@ export const Card_back = styled.div`
     justify-content: space-around;
     align-items: center;
     height: 100%;
+    overflow: auto;
     h3 {
         font-size: 1.5rem;
         margin-bottom: 1rem;
