@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { COLORS } from "../../utils/Vars";
 
-export const Blog_container = styled.div`
+export const BlogContainer = styled.div`
     display: flex;
     flex-wrap: wrap;
     margin: 50px;
@@ -41,7 +41,7 @@ export const Blog_container = styled.div`
     }
 `;
 
-export const Single_blog_post = styled.div`
+export const SingleBlogPost = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;

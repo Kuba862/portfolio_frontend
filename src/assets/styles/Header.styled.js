@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLORS } from '../../utils/Vars';
 import LogoImage from '../images/work.webp';
 
-export const Header_style = styled.header`
+export const HeaderStyle = styled.header`
 position: relative;
 top: 0;
 left: 0;
@@ -43,7 +43,7 @@ a {
 }
 `
 
-export const Language_selector_box = styled.select`
+export const LanguageSelectorBox = styled.select`
 position: absolute;
 top: 1rem;
 right: 1rem;

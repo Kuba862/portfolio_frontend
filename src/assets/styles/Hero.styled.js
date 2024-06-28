@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Hero_style = styled.div`
+export const HeroStyle = styled.div`
     height: 50vh;
     img {
         width: 100vw;

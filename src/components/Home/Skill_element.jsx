@@ -1,15 +1,15 @@
 import React, { useState, useContext } from 'react';
 import { MainContext } from '../../context/MainContext';
 import {
-  Skill_el,
-  Rendered_skill,
-  Rendered_skill_box,
-  Card_back
+  SkillEl,
+  RenderedSkill,
+  RenderedSkillBox,
+  CardBack
 } from '../../assets/styles/Skills.styled';
 import useMultiPosts from '../../hooks/useMultiPosts';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
-const Skill_element = () => {
+const SkillElement = () => {
   const { t, language } = useContext(MainContext);
   const { posts } = useMultiPosts('http://127.0.0.1:8000/api/v1/expiriences');
   const [flipped, setFlipped] = useState(null);
@@ -26,10 +26,10 @@ const Skill_element = () => {
   console.log(language)
 
   return (
-    <Skill_el>
+    <SkillEl>
       {posts.map((post) => {
         return (
-          <Rendered_skill_box key={post?.id} flipped={flipped}>
+          <RenderedSkillBox key={post?.id} flipped={flipped}>
             <Flipper flipKey={flipped === post?.id}>
               <div
                 onClick={() => handleFlip(post?.id)}
@@ -39,29 +39,29 @@ const Skill_element = () => {
                   <div
                     className={`card ${flipped === post?.id ? 'flipped' : ''}`}
                   >
-                    <Rendered_skill
+                    <RenderedSkill
                       image={post?.image}
                       className="card-front"
-                    ></Rendered_skill>
+                    ></RenderedSkill>
                     <div>
                     </div>
                     <div className="card-back">
-                      <Card_back>
+                      <CardBack>
                     <h3>{post?.name}</h3>
                       <p
                         dangerouslySetInnerHTML={{ __html: language === 'pl' ? post?.learning_way_pl : post?.learning_way_en }}
                       />
-                      </Card_back>
+                      </CardBack>
                     </div>
                   </div>
                 </Flipped>
               </div>
             </Flipper>
-          </Rendered_skill_box>
+          </RenderedSkillBox>
         );
       })}
-    </Skill_el>
+    </SkillEl>
   );
 };
 
-export default Skill_element;
+export default SkillElement;

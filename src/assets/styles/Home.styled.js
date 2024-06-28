@@ -3,7 +3,7 @@ import HomePageImage from '../images/header-image.webp';
 import Image_3 from '../images/abstract/3.WEBP';
 import { COLORS } from '../../utils/Vars';
 
-export const Home_style = styled.section`
+export const HomeStyle = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -14,7 +14,7 @@ export const Home_style = styled.section`
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 `;
 
-export const Pre_about_section = styled.div`
+export const PreAboutSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,13 +23,13 @@ export const Pre_about_section = styled.div`
   box-shadow: 0 0 10px 5px ${COLORS.black500};
 `;
 
-export const My_section = styled.div`
+export const MySection = styled.div`
   display: flex;
   justify-content: center;
   margin: 150px 0;
 `;
 
-export const My_section_text = styled.div`
+export const MySectionText = styled.div`
   display: flex;
   flex-direction: column;
   font-size: 1.5rem;
@@ -43,7 +43,7 @@ export const My_section_text = styled.div`
   }
 `;
 
-export const My_section_image = styled.div`
+export const MySectionImage = styled.div`
   display: flex;
   justify-content: center;
   width: 50%;
@@ -58,13 +58,13 @@ export const My_section_image = styled.div`
   }
 `;
 
-export const Image_under_my_section = styled.div`
+export const ImageUnderMySectionStyled = styled.div`
 position: relative;
   width: 100%;
   height: 20vh;
 `;
 
-export const Career_steps_section = styled.div`
+export const CareerStepsSection = styled.div`
   display: flex;
   justify-content: center;
 `;

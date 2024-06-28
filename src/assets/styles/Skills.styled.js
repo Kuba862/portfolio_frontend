@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { COLORS } from '../../utils/Vars';
 
-export const Skills_box = styled.div`
+export const SkillsBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -10,12 +10,12 @@ export const Skills_box = styled.div`
   background-color: ${COLORS.black500};
 `;
 
-export const Skill_el = styled.div`
+export const SkillEl = styled.div`
 display: flex;
 gap: 25px;
 `;
 
-export const Rendered_skill_box = styled.div`
+export const RenderedSkillBox = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -74,7 +74,7 @@ export const Rendered_skill_box = styled.div`
     }
 `;
 
-export const Rendered_skill = styled.div`
+export const RenderedSkill = styled.div`
   background-image: url(${(props) => props.image});
   background-size: cover;
   background-position: center;
@@ -85,7 +85,7 @@ export const Rendered_skill = styled.div`
   flex-direction: column;
 `;
 
-export const Card_back = styled.div`
+export const CardBack = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-around;
