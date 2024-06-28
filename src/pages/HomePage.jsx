@@ -1,17 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import {
   Home_style,
   Pre_about_section,
   My_section,
   My_section_image,
-  Career_steps_section,
 } from '../assets/styles/Home.styled';
-import { MainContext } from '../context/MainContext';
 import Hero from '../components/Home/Hero';
 import myImage from '../assets/images/me_2.webp';
 import About_me from '../components/Home/About_me';
 import { FaRegSquare } from 'react-icons/fa';
-import { LuTriangle } from "react-icons/lu";
 import { IoTriangleOutline } from "react-icons/io5";
 import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { COLORS } from '../utils/Vars';
@@ -19,7 +16,6 @@ import ImageUnderMySection from '../components/Home/Image_under_my_section';
 import Skills from '../components/Home/Skills';
 
 const HomePage = () => {
-  const { posts, t } = useContext(MainContext);
 
   return (
     <>
