@@ -9,5 +9,4 @@ export const COLORS = {
   yellow500: '#b39759',
   white: '#ffffff',
   yellow200: '#ffeb15',
-  black500: '#000000',
 };
