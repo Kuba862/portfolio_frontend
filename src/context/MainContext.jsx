@@ -1,6 +1,7 @@
-import { createContext } from 'react';
+import React, { createContext } from 'react';
 import useMultiPosts from '../hooks/useMultiPosts';
 import { useTranslation } from 'react-i18next';
+import PropTypes from 'prop-types';
 import '../i18next.config';
 
 export const MainContext = createContext();
@@ -14,6 +15,10 @@ const MainContextProvider = ({ children }) => {
     t,
     language
   }}>{children}</MainContext.Provider>;
+};
+
+MainContext.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default MainContextProvider;
