@@ -10,7 +10,7 @@ import useMultiPosts from '../../hooks/useMultiPosts';
 import { Flipper, Flipped } from 'react-flip-toolkit';
 
 const SkillElement = () => {
-  const { t, language } = useContext(MainContext);
+  const { language } = useContext(MainContext);
   const { posts } = useMultiPosts('http://127.0.0.1:8000/api/v1/expiriences');
   const [flipped, setFlipped] = useState(null);
 
