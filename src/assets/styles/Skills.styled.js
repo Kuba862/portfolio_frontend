@@ -7,6 +7,7 @@ export const SkillsBox = styled.div`
   align-items: center;
   width: 100vw;
   padding-top: 5rem;
+  padding-bottom: 5rem;
   background-color: ${COLORS.black500};
 `;
 
@@ -22,7 +23,7 @@ export const RenderedSkillBox = styled.div`
     align-items: center;
     border: 1px solid #fff;
     border-radius: 5px;
-    padding: 1rem;
+    padding: .7rem;
     .flip-container {
         perspective: 1000px;
         .card {
@@ -44,6 +45,18 @@ export const RenderedSkillBox = styled.div`
                 align-items: center;
                 background-color: ${COLORS.black500};
                 color: ${COLORS.white};
+                border-radius: 5px;
+                &::after {
+                    content: "Click me!";
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, .5);
+                    border-radius: 5px;
+                    visibility: hidden;
+                }
                 h3 {
                     font-size: 1.5rem;
                     margin-bottom: 1rem;
@@ -51,6 +64,9 @@ export const RenderedSkillBox = styled.div`
                 p {
                     font-size: 1rem;
                     line-height: 1.5;
+                }
+                &:hover::after {
+                    visibility: visible;
                 }
             }
             .card-back {
@@ -66,6 +82,7 @@ export const RenderedSkillBox = styled.div`
                 transform: rotateY(180deg);
                 background-color: ${COLORS.yellow500};
                 color: ${COLORS.white};
+                border-radius: 5px;
             }
             &.flipped {
                 transform: rotateY(180deg);

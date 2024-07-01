@@ -14,6 +14,7 @@ import { Parallax, ParallaxProvider } from 'react-scroll-parallax';
 import { COLORS } from '../utils/Vars';
 import ImageUnderMySection from '../components/Home/Image_under_my_section';
 import Skills from '../components/Home/Skills';
+import Libs from '../components/Home/Libs';
 
 const HomePage = () => {
 
@@ -91,6 +92,7 @@ const HomePage = () => {
           </Parallax>
             <Skills />
         </ParallaxProvider>
+        <Libs />
       </HomeStyle>
     </>
   );

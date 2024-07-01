@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { MainContext } from '../../context/MainContext';
 import {
   SkillEl,
@@ -23,13 +23,11 @@ const SkillElement = () => {
     }
   };
 
-  console.log(language)
-
   return (
     <SkillEl>
       {posts.map((post) => {
         return (
-          <RenderedSkillBox key={post?.id} flipped={flipped}>
+          <RenderedSkillBox key={post?.id} flipped={flipped} content="text">
             <Flipper flipKey={flipped === post?.id}>
               <div
                 onClick={() => handleFlip(post?.id)}
