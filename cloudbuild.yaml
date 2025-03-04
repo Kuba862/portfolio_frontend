@@ -3,7 +3,13 @@ steps:
     args: ["install"]
   - name: "gcr.io/cloud-builders/npm"
     args: ["run", "build"]
-  - name: "gcr.io/cloud-builders/gclod"
+  - name: "gcr.io/cloud-builders/gcloud"
     args: ["app", "deploy"]
 options:
   logging: CLOUD_LOGGING_ONLY
+region: europe-west3
+substitutions:
+  _SERVICE_NAME: "portfolio-frontend"
+  _REGION: "europe-west3"
+  _PROJECT_ID: "portfolio-frontend"
+  _IMAGE_NAME: "gcr.io/portfolio-frontend/portfolio-frontend"
