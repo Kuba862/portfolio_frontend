@@ -1,14 +1,22 @@
 runtime: nodejs20
 
 handlers:
-  - url: /static
-    static_dir: build/static
-
-  - url: /(.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot|ttc|ttf|map))
-    static_files: build/\1
-    upload: build/.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot|ttc|ttf|map)
+  - url: /assets
+    static_dir: build/assets
 
   - url: /.*
     static_files: build/index.html
     upload: build/index.html
-    secure: always
+
+  # - url: /(.*)
+  #   static_files: build/\1
+  #   upload: build/\1
+
+  # - url: /(.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot|ttc|ttf|map))
+  #   static_files: build/\1
+  #   upload: build/.*\.(css|js|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|otf|eot|ttc|ttf|map)
+
+  # - url: /.*
+  #   static_files: build/index.html
+  #   upload: build/index.html
+  #   secure: always
