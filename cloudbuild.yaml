@@ -5,3 +5,5 @@ steps:
     args: ["run", "build"]
   - name: "gcr.io/cloud-builders/gclod"
     args: ["app", "deploy"]
+options:
+  logging: CLOUD_LOGGING_ONLY
