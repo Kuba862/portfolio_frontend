@@ -44,7 +44,7 @@ a {
 `
 
 export const LanguageSelectorBox = styled.select`
-position: absolute;
+position: fixed;
 top: 1rem;
 right: 1rem;
 background-color: ${COLORS.black500};
@@ -55,6 +55,7 @@ cursor: pointer;
 border-radius: 10px;
 text-transform: uppercase;
 font-weight: 700;
+z-index: 3;
 &:hover {
     color: ${COLORS.yellow500};
 }

@@ -6,7 +6,6 @@ import { LibsStyle } from '../../assets/styles/Libs.styled';
 
 const Libs = () => {
   const { expiriencesState } = useExpiriences(`${BE_URL()}/api/v1/libraries`);
-  console.log(expiriencesState);
   const { t, language } = useContext(MainContext);
 
   return (

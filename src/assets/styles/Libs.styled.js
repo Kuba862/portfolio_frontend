@@ -18,6 +18,7 @@ export const LibsStyle = styled.div`
         align-items: center;
         flex-wrap: wrap;
         width: 70%;
+        margin-bottom: 100px;
     div {
         display: flex;
         flex-direction: column;

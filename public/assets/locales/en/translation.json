@@ -14,5 +14,13 @@
         "fifth_paragraph": "In the future, I aim to deepen my knowledge of production-level application containerization and experience working in an office environment to fully understand what it's like to be part of a dynamic team on a daily basis.",
         "sixth_paragraph": "I look forward to connecting and collaborating!",
         "seventh_paragraph": "Jakub Rejch"
+    },
+    "footer": {
+        "contact": "Contact",
+        "popup_title": "Contact me",
+        "placeholder_name": "Your name",
+        "placeholder_email": "Your email",
+        "placeholder_message": "Your message",
+        "button_send": "Send"
     }
 }

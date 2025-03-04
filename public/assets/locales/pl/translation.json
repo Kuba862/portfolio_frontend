@@ -14,5 +14,13 @@
         "fifth_paragraph": "W przyszłości chciałbym pogłębić swoją wiedzę na temat konteneryzacji aplikacji na poziomie produkcyjnym oraz doświadczyć pracy w biurze, aby móc na własnej skórze poczuć, jak to jest być częścią dynamicznego zespołu na co dzień.",
         "sixth_paragraph": "Zapraszam do kontaktu i współpracy!",
         "seventh_paragraph": "Jakub Rejch"
+    },
+    "footer": {
+        "contact": "Kontakt",
+        "popup_title": "Skontaktuj się ze mną",
+        "placeholder_name": "Twoje imię",
+        "placeholder_email": "Twój adres e-mail",
+        "placeholder_message": "Twoja wiadomość",
+        "button_send": "Wyślij"
     }
 }
