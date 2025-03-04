@@ -7,7 +7,6 @@ steps:
     args: ["app", "deploy"]
 options:
   logging: CLOUD_LOGGING_ONLY
-region: europe-west3
 substitutions:
   _SERVICE_NAME: "portfolio-frontend"
   _REGION: "europe-west3"
