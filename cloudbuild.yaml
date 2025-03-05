@@ -1,3 +1,5 @@
+logsBucket: "gs://portfolio-jakub-rejch-cloudbuild-logs"
+
 steps:
   # budowanie obrazu dockera
   - name: 'gcr.io/cloud-builders/docker'
