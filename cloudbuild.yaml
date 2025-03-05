@@ -1,14 +1,14 @@
 steps:
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["install"]
-  - name: "gcr.io/cloud-builders/npm"
-    args: ["run", "build"]
-  - name: "gcr.io/cloud-builders/gcloud"
-    args: ["app", "deploy", ".", "--appyaml=app.yaml"]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'gcr.io/test-react-app-4587215/app', '.']
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'gcr.io/test-react-app-4587215/app']
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['run', 'deploy', 'app', '--image', 'gcr.io/test-react-app-4587215/app', '--platform', 'managed']
 options:
   logging: CLOUD_LOGGING_ONLY
 substitutions:
-  _SERVICE_NAME: "portfolio-frontend"
+  _SERVICE_NAME: "app"
   _REGION: "europe-west3"
-  _PROJECT_ID: "portfolio-frontend"
-  _IMAGE_NAME: "gcr.io/portfolio-frontend/portfolio-frontend"
+  _PROJECT_ID: "test-react-app-4587215"
+  _IMAGE_NAME: "gcr.io/test-react-app-4587215/app"
