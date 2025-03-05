@@ -11,11 +11,11 @@ const Language_selector = () => {
   };
   return (
     <LanguageSelectorBox onChange={(e) => changeLanguage(e)} >
+      <option value="pl">
+          Polski
+        </option>
         <option value="en">
           English
-        </option>
-        <option value="pl">
-          Polski
         </option>
     </LanguageSelectorBox>
   );

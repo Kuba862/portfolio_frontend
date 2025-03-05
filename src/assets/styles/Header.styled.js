@@ -10,6 +10,7 @@ padding: 1rem;
 background-color: ${COLORS.black500};
 color: white;
 text-align: center;
+z-index: 3;
 `
 
 export const Logo = styled.div`
@@ -71,6 +72,7 @@ export const Login_icon = styled.span`
     right: 10rem;
     color: white;
     transition: .2s ease-in-out;
+    cursor: pointer;
     &:hover {
         color: ${COLORS.yellow500};
     }

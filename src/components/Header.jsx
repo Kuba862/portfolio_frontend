@@ -9,7 +9,7 @@ import LanguageSelector from './Language_selector';
 import Login from './Home/Login';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({ openModal, closeModal, modalIsOpen }) => {
   const { t } = useContext(MainContext);
   return (
     <HeaderStyle>
@@ -17,9 +17,8 @@ const Header = () => {
       <Navigation>
         <Link to="/" >{t('header.navbar.portfolio')}</Link>
         <Link to="/blog" >{t('header.navbar.blog')}</Link>
-        {/* <li>{t('header.navbar.about')}</li> */}
       </Navigation>
-        <Login />
+        <Login openModal={openModal} closeModal={closeModal} modalIsOpen={modalIsOpen} />
         <LanguageSelector />
     </HeaderStyle>
   );

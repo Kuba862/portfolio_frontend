@@ -2,13 +2,20 @@ import React from 'react';
 import { Login_icon } from '../../assets/styles/Header.styled';
 import { FaLock } from 'react-icons/fa';
 
-const Login = () => {
+const Login = ({ openModal, closeModal, modalIsOpen }) => {
+
+  const modalHandler = () => {
+    if(modalIsOpen) {
+      closeModal();
+    } else {
+      openModal();
+    }
+  }
+
   return (
-    <a href="http://127.0.0.1:8000/admin-panel/login-user" target='__blank'>
-    <Login_icon>
+    <Login_icon onClick={modalHandler}>
       <FaLock />
     </Login_icon>
-    </a>
   );
 };
 

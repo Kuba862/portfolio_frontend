@@ -8,7 +8,8 @@ import axios from 'axios';
 export const MainContext = createContext();
 
 const MainContextProvider = ({ children }) => {
-    const { posts } = useMultiPosts('http://127.0.0.1:8000/api/v1/posts');
+    const [isOpenModal, setIsOpenModal] = useState(false);
+    const { posts } = useMultiPosts('http://localhost:7897/api/v1/portfolio/posts');
     const { t } = useTranslation();
     const { i18n: { language } } = useTranslation();
 
@@ -18,6 +19,10 @@ const MainContextProvider = ({ children }) => {
     email: '',
     message: ''
   })
+
+  const handleOpenModal = () => {
+    setIsOpenModal(!isOpenModal);
+  }
 
   const handleContactOpen = () => {
     setContactIsOpen(!contactIsOpen);
@@ -51,7 +56,9 @@ const MainContextProvider = ({ children }) => {
     contactFormData,
     handleContactOpen,
     handleContactFormData,
-    sendContactData
+    sendContactData,
+    isOpenModal,
+    handleOpenModal
   }}>{children}</MainContext.Provider>;
 };
 
