@@ -1,14 +1,28 @@
 steps:
+  # budowanie obrazu dockera
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['build', '-t', 'gcr.io/test-react-app-4587215/app', '.']
+    args:
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+      - '.'
+    # wypychanie obrazu do Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
-    args: ['push', 'gcr.io/test-react-app-4587215/app']
-  - name: 'gcr.io/cloud-builders/gcloud'
-    args: ['run', 'deploy', 'app', '--image', 'gcr.io/test-react-app-4587215/app', '--platform', 'managed']
-options:
-  logging: CLOUD_LOGGING_ONLY
-substitutions:
-  _SERVICE_NAME: "app"
-  _REGION: "europe-west3"
-  _PROJECT_ID: "test-react-app-4587215"
-  _IMAGE_NAME: "gcr.io/test-react-app-4587215/app"
+    args:
+      - 'push'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+    # Wdrozenie aplikacji w Cloud Run
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - 'react-app'
+      - '--image'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+      - '--platform=managed'
+      - '--region=us-central1'
+      - '--allow-unauthenticated'
+
+images:
+  - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
