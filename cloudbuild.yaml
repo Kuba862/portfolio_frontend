@@ -30,7 +30,7 @@ steps:
   - name: 'curlimages/curl'
     args:
       - 'f'
-      - 'https://react-app-green<region>.a.run.app/health'
+      - 'https://react-app-green<region>.a.run.app/index.html'
     timeout: '10s'
     allowFailure: true
 
