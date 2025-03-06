@@ -1,14 +1,13 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { Login_form, Input, Button } from '../../assets/styles/Login.styled';
+import useLogin from '../../hooks/useLogin';
 
 const LoginForm = () => {
     const { register, handleSubmit } = useForm();
+    const { login } = useLogin();
 
-    const onSubmit = (data, e) => {
-        e.preventDefault();
-        console.log(data);
-    }
+    const onSubmit = (data) => login(data.email, data.password);
 
   return (
     <Login_form onSubmit={handleSubmit(onSubmit)}>
