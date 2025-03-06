@@ -1,15 +1,12 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
-const basePath = process.env.REACT_APP_API_URL;
-const endpoint = process.env.REACT_APP_LOGIN;
-
 const useLogin = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const login = async (e, p) => {
         try {
-            const res = await axios.post(`${basePath}${endpoint}`, {
+            const res = await axios.post(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN}`, {
                 email: e,
                 password: p
             })
