@@ -12,7 +12,7 @@ const Skills = () => {
           {/* <Parallax  */}
           {/* translateX={[ '630px', '-100px' ]} */}
           {/* > */}
-            <SkillElement />
+            {/* <SkillElement /> */}
           {/* </Parallax> */}
         </SkillsBox>
       </CareerStepsSection>

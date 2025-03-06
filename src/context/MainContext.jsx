@@ -9,7 +9,7 @@ export const MainContext = createContext();
 
 const MainContextProvider = ({ children }) => {
     const [isOpenModal, setIsOpenModal] = useState(false);
-    const { posts } = useMultiPosts('http://localhost:7897/api/v1/portfolio/posts');
+    // const { posts } = useMultiPosts('http://localhost:7897/api/v1/portfolio/posts');
     const { t } = useTranslation();
     const { i18n: { language } } = useTranslation();
 
@@ -49,7 +49,7 @@ const MainContextProvider = ({ children }) => {
   }
 
   return <MainContext.Provider value={{
-    posts,
+    // posts,
     t,
     language,
     contactIsOpen,

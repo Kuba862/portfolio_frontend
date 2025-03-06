@@ -92,7 +92,7 @@ const HomePage = () => {
           </Parallax>
             <Skills />
         </ParallaxProvider>
-        <Libs />
+        {/* <Libs /> */}
       </HomeStyle>
     </>
   );
