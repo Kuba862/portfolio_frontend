@@ -13,19 +13,28 @@ steps:
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
-    # Wdrozenie aplikacji w Cloud Run
+    # Wdrozenie aplikacji w Cloud Run (GREEN)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: gcloud
+    entrypoint: bash
     args:
-      - 'run'
-      - 'deploy'
-      - 'react-app-green' # wdrozenie nowej wersji jako osobna instancja
-      - '--image'
-      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
-      - '--platform=managed'
-      - '--region=us-central1'
-      - '--allow-unauthenticated'
-      - '--no-traffic'
+      - '-c'
+      - |
+        if gcloud run services describe react-app-green --platform=managed --region=us-central1; then
+          echo "Service exists, deploying with --no-traffic"
+          gcloud run deploy react-app-green \
+            --image=us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA \
+            --platform=managed \
+            --region=us-central1 \
+            --allow-unauthenticated \
+            --no-traffic
+        else
+          echo "Service does not exist, deploying without --no-traffic"
+          gcloud run deploy react-app-green \
+            --image=us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA \
+            --platform=managed \
+            --region=us-central1 \
+            --allow-unauthenticated
+        fi
     # sprawdzenie czy nowa wersja działa poprawnie (Testowanie endpointu /health)
   - name: 'curlimages/curl'
     args:

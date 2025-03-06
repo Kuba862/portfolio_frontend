@@ -1,8 +1,11 @@
+import { useContext } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { AuthContext } from '../context/AuthContext';
 
 const useLogin = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const { loginContext } = useContext(AuthContext);
 
     const login = async (e, p) => {
         try {
@@ -10,7 +13,8 @@ const useLogin = () => {
                 email: e,
                 password: p
             })
-            console.log(res.data);
+            setIsLoggedIn(res.data.logged);
+            loginContext(res.data.token, res.data.id);
         } catch(e) {
             console.log(e);
         }

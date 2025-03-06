@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { MainContext } from './context/MainContext';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './pages/HomePage';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -9,6 +9,8 @@ import BlogPost from './pages/Blog_post';
 import Form from './components/ContactForm/Form';
 import Modal from 'react-modal';
 import LoginForm from './components/Login/Login';
+import Admin from './pages/Admin';
+import { AuthContext } from './context/AuthContext';
 
 const customStyles = {
   content: {
@@ -28,6 +30,7 @@ const customStyles = {
 const App = () => {
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
+  const { auth, loading } = useContext(AuthContext);
   const { contactIsOpen } = useContext(MainContext);
 
   const openModal = () => setModalIsOpen(true);
@@ -54,6 +57,7 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="/admin" element={auth ? <Admin /> : <Navigate to="/" />} />
       </Routes>
       {contactIsOpen && <Form />}
       <Footer />
