@@ -25,7 +25,7 @@ steps:
       - '--platform=managed'
       - '--region=us-central1'
       - '--allow-unauthenticated'
-      - 'no-traffic'
+      - '--no-traffic'
     # sprawdzenie czy nowa wersja działa poprawnie (Testowanie endpointu /health)
   - name: 'curlimages/curl'
     args:
