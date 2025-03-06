@@ -6,25 +6,43 @@ steps:
     args:
       - 'build'
       - '-t'
-      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
       - '.'
     # wypychanie obrazu do Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
-      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
     # Wdrozenie aplikacji w Cloud Run
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
       - 'run'
       - 'deploy'
-      - 'react-app'
+      - 'react-app-green' # wdrozenie nowej wersji jako osobna instancja
       - '--image'
-      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+      - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
       - '--platform=managed'
       - '--region=us-central1'
       - '--allow-unauthenticated'
+      - 'no-traffic'
+    # sprawdzenie czy nowa wersja działa poprawnie (Testowanie endpointu /health)
+  - name: 'curlimages/curl'
+    args:
+      - 'f'
+      - 'https://react-app-green<region>.a.run.app/health'
+    timeout: '10s'
+    allowFailure: true
 
+    # Jeśli testy się powiodą, przełącz ruch na nową wersję
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'services'
+      - 'update-traffic'
+      - 'react-app'
+      - '--region=us-central1'
+      - '--to-latest'
 images:
-  - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image'
+  - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'

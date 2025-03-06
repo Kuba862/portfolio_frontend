@@ -11,8 +11,8 @@ const LoginForm = () => {
 
   return (
     <Login_form onSubmit={handleSubmit(onSubmit)}>
-        <Input type="text" {...register('email')} />
-        <Input type="password" {...register('password')} />
+        <Input type="text" {...register('email')} placeholder='Email' />
+        <Input type="password" {...register('password')} placeholder='Password' />
         <Button type="submit">Login</Button>
     </Login_form>
   )
