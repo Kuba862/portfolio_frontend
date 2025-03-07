@@ -2,10 +2,9 @@
 logsBucket: "gs://portfolio-jakub-rejch-cloudbuild-logs"
 
 steps:
-  # Pobieranie (wymuszenie) najnowszego kodu (jeśli Cloud Build nie robi tego automatycznie)
+  # Pobranie (wymuszenie) najnowszego kodu (jeśli Cloud Build nie robi tego automatycznie)
   - name: 'gcr.io/cloud-builders/git'
     entrypoint: 'bash'
-    # ustawienie autoryzacji dla google cloud build, pobranie wszystkich aktualizacji kodu i reset lokalnych plików do najnowszego commite w gałęzi master
     args:
       - '-c'
       - |
@@ -13,23 +12,18 @@ steps:
         git fetch --all
         git reset --hard origin/master
     id: "Force fetch latest code"
+
   # Instalacja zależności i budowanie aplikacji React
-  # Pobiera i instaluje wszystkie pakiety z package.json
-  # tworzenie katalogu node_modules
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
     id: "Install dependencies"
-  # Budowanie aplikacji React
-  # folder build będzie kopiowany do obrazu Dockera
-  # tu uzyć zmiennych REACT_APP_
+
   - name: 'gcr.io/cloud-builders/npm'
     args: ['run', 'build']
     id: "Build React app"
 
   # Budowanie obrazu Dockera
-  # Tworzenie obrazu na podstawie dockerfile i taguje go z SHA kodu
   - name: 'gcr.io/cloud-builders/docker'
-  # uruchamia proces budowy, wymusza budowanie obrazu od zera, nadaje tag obrazowi, buduje obraz na podstawie Dockerfile z głównego katalogu
     args:
       - 'build'
       - '--no-cache'
@@ -39,66 +33,34 @@ steps:
     id: "Build Docker image"
 
   # Push obrazu do Artifact Registry
-  # wysyła obraz do Artifact Registry, skąd będzie wdrażany na Cloud Run
   - name: 'gcr.io/cloud-builders/docker'
-  # obraz jest dostępny pod adresem us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
     id: "Push Docker image"
 
-  # Wdrożenie na Cloud Run (green deployment)
-  # sprawdza czy usługa o nazwie react-app-green istnieje w regionie us-central1
-  # jeśli istnieje, wdraża nową wersję bez przełączania ruchu (--no-traffic)
-  # jeśli nie istnieje, wdraża nową wersję normalnie
-  # dzięki green deployment można testować nową wersję bez przełączania ruchu
-  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-    entrypoint: bash
-    args:
-      - '-c'
-      - |
-        if gcloud run services describe react-app-green --platform=managed --region=us-central1; then
-          echo "Service exists, deploying with --no-traffic"
-          gcloud run deploy react-app-green \
-            --image=us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA \
-            --platform=managed \
-            --region=us-central1 \
-            --allow-unauthenticated \
-            --no-traffic
-        else
-          echo "Service does not exist, deploying without --no-traffic"
-          gcloud run deploy react-app-green \
-            --image=us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA \
-            --platform=managed \
-            --region=us-central1 \
-            --allow-unauthenticated
-        fi
-    id: "Deploy to Cloud Run"
-
-  # Sprawdzenie, czy aplikacja działa i czy jest dostępna po wdrożeniu
-  # curl pobiera index.html z mowejj wersji aplikacji
-  # jeśli zwróci błąd 404 lub 500, build nie zostanie zatrzymany
-  - name: 'curlimages/curl'
-    args:
-      - '-f'
-      - 'https://react-app-green.us-central1.a.run.app/index.html'
-    timeout: '10s'
-    allowFailure: true
-    id: "Test deployed app"
-
-  # Jeśli testy się powiodą, przełącz ruch na nową wersję
-  # gcloud update-traffic przełącza ruch na nową wersję
-  # --to-latest oznacza, że ruch zostanie przełączony na najnowszą wersję
+  # Wdrożenie na Cloud Run (bez green deployment)
+  # Nowa wersja aplikacji od razu przejmuje cały ruch
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
       - 'run'
-      - 'services'
-      - 'update-traffic'
+      - 'deploy'
       - 'react-app'
+      - '--image=us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
+      - '--platform=managed'
       - '--region=us-central1'
-      - '--to-latest'
-    id: "Switch traffic to new version"
+      - '--allow-unauthenticated'
+    id: "Deploy to Cloud Run"
+
+  # Sprawdzenie, czy aplikacja działa i czy jest dostępna po wdrożeniu
+  - name: 'curlimages/curl'
+    args:
+      - '-f'
+      - 'https://react-app.us-central1.a.run.app/index.html'
+    timeout: '10s'
+    allowFailure: true
+    id: "Test deployed app"
 
 images:
   - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
