@@ -1,6 +1,16 @@
 logsBucket: "gs://portfolio-jakub-rejch-cloudbuild-logs"
 
 steps:
+  # Pobieranie najnowszego kodu (jeśli Cloud Build nie robi tego automatycznie)
+  - name: 'gcr.io/cloud-builders/git'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        git config --global credential.helper gcloud.sh
+        git fetch --all
+        git reset --hard origin/master
+    id: "Force fetch latest code"
   # Instalacja zależności i budowanie aplikacji React
   - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
@@ -54,7 +64,7 @@ steps:
   - name: 'curlimages/curl'
     args:
       - '-f'
-      - 'https://react-app-green.us-central1.a.run.app/index.html'  # Poprawny URL
+      - 'https://react-app-green.us-central1.a.run.app/index.html'
     timeout: '10s'
     allowFailure: true
     id: "Test deployed app"
