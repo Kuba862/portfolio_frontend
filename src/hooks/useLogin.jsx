@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
+import { defineEnv } from '../utils/helpers';
 
 const useLogin = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -9,7 +10,7 @@ const useLogin = () => {
 
     const login = async (e, p) => {
         try {
-            const res = await axios.post(`${process.env.REACT_APP_API_URL}${process.env.REACT_APP_LOGIN}`, {
+            const res = await axios.post(`${defineEnv().API_URL}${defineEnv().LOGIN}`, {
                 email: e,
                 password: p
             })
