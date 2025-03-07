@@ -1,19 +1,32 @@
 logsBucket: "gs://portfolio-jakub-rejch-cloudbuild-logs"
 
 steps:
-  # budowanie obrazu dockera
+  # Instalacja zależności i budowanie aplikacji React
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['install']
+    id: "Install dependencies"
+
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']
+    id: "Build React app"
+
+  # Budowanie obrazu Dockera
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'build'
       - '-t'
       - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
       - '.'
-    # wypychanie obrazu do Artifact Registry
+    id: "Build Docker image"
+
+  # Push obrazu do Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
       - 'push'
       - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
-    # Wdrozenie aplikacji w Cloud Run (GREEN)
+    id: "Push Docker image"
+
+  # Wdrożenie na Cloud Run (green deployment)
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: bash
     args:
@@ -35,15 +48,18 @@ steps:
             --region=us-central1 \
             --allow-unauthenticated
         fi
-    # sprawdzenie czy nowa wersja działa poprawnie (Testowanie endpointu /health)
+    id: "Deploy to Cloud Run"
+
+  # Sprawdzenie, czy aplikacja działa
   - name: 'curlimages/curl'
     args:
-      - 'f'
-      - 'https://react-app-green<region>.a.run.app/index.html'
+      - '-f'
+      - 'https://react-app-green.us-central1.a.run.app/index.html'  # Poprawny URL
     timeout: '10s'
     allowFailure: true
+    id: "Test deployed app"
 
-    # Jeśli testy się powiodą, przełącz ruch na nową wersję
+  # Jeśli testy się powiodą, przełącz ruch na nową wersję
   - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
     entrypoint: gcloud
     args:
@@ -53,5 +69,7 @@ steps:
       - 'react-app'
       - '--region=us-central1'
       - '--to-latest'
+    id: "Switch traffic to new version"
+
 images:
   - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
