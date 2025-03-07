@@ -8,6 +8,12 @@ steps:
       - '-t'
       - 'us-central1-docker.pkg.dev/portfolio-jakub-rejch/react-app/react-app-image:$COMMIT_SHA'
       - '.'
+    env:
+      - 'REACT_APP_API_URL=https://bk-app-be.onrender.com/api/portfolio/v1'
+      - 'REACT_APP_ADD_SKILL=/add/skill'
+      - 'REACT_APP_GET_SKILLS=/get-skills'
+      - 'REACT_APP_LOGIN=/login'
+      - 'REACT_APP_VERIFY=/auth'
     # wypychanie obrazu do Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     args:
