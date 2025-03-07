@@ -9,6 +9,7 @@ const useLogin = () => {
     const { loginContext } = useContext(AuthContext);
 
     const login = async (e, p) => {
+        console.log(`${defineEnv().API_URL}/login`);
         try {
             const res = await axios.post(`${defineEnv().API_URL}${defineEnv().LOGIN}`, {
                 email: e,
