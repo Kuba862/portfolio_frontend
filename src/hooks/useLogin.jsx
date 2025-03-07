@@ -1,6 +1,5 @@
-import { useContext } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
-import { useState, useEffect } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { defineEnv } from '../utils/helpers';
 
@@ -23,7 +22,10 @@ const useLogin = () => {
     }
 
     useEffect(() => {
-        login();
+        const token = localStorage.getItem('auth_token');
+        if (token) {
+            setIsLoggedIn(true);
+        }
     }, []);
 
     return { isLoggedIn, login };

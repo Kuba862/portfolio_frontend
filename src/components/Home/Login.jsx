@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Login_icon } from '../../assets/styles/Header.styled';
-import { FaLock } from 'react-icons/fa';
+import { FaLock, FaLockOpen } from 'react-icons/fa';
+import { AuthContext } from '../../context/AuthContext';
 
 const Login = ({ openModal, closeModal, modalIsOpen }) => {
+  const { auth, logoutContext } = useContext(AuthContext);
 
   const modalHandler = () => {
     if(modalIsOpen) {
@@ -13,8 +15,8 @@ const Login = ({ openModal, closeModal, modalIsOpen }) => {
   }
 
   return (
-    <Login_icon onClick={modalHandler}>
-      <FaLock />
+    <Login_icon onClick={auth ? logoutContext : modalHandler}>
+      {auth ? <FaLockOpen /> : <FaLock />}
     </Login_icon>
   );
 };

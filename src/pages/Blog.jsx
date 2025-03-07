@@ -7,14 +7,14 @@ const Blog = () => {
     const { posts } = useContext(MainContext);
   return (
     <BlogContainer>
-        {posts.map((post) => {
+        {/* {posts.map((post) => {
             return (
                 <Link key={post?.id} to={`${post?.id}`} >
                     <h1 dangerouslySetInnerHTML={{ __html: post?.title }} />
                     <img src={post?.image} alt={post?.title} />
                 </Link>
             )
-        })}
+        })} */}
     </BlogContainer>
   )
 }

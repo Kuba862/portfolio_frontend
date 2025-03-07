@@ -1,8 +1,11 @@
 import React from 'react'
+import AddSklill from '../components/Admin/AddSklill'
 
 const Admin = () => {
   return (
-    <div>Admin</div>
+    <div>
+      <AddSklill />
+    </div>
   )
 }
 

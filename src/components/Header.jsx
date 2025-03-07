@@ -17,6 +17,7 @@ const Header = ({ openModal, closeModal, modalIsOpen }) => {
       <Navigation>
         <Link to="/" >{t('header.navbar.portfolio')}</Link>
         <Link to="/blog" >{t('header.navbar.blog')}</Link>
+        <Link to="/admin" >{t('header.navbar.admin')}</Link>
       </Navigation>
         <Login openModal={openModal} closeModal={closeModal} modalIsOpen={modalIsOpen} />
         <LanguageSelector />

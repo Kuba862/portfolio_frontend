@@ -3,7 +3,8 @@
         "navbar": {
             "portfolio": "Portfolio",
             "blog": "Blog",
-            "about": "O mnie"
+            "about": "O mnie",
+            "admin": "Admin"
         }
     },
     "about_me": {
@@ -22,5 +23,8 @@
         "placeholder_email": "Twój adres e-mail",
         "placeholder_message": "Twoja wiadomość",
         "button_send": "Wyślij"
+    },
+    "admin": {
+        "add_skill_button": "Dodaj umiejętność"
     }
 }

@@ -11,6 +11,7 @@ import Modal from 'react-modal';
 import LoginForm from './components/Login/Login';
 import Admin from './pages/Admin';
 import { AuthContext } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
 
 const customStyles = {
   content: {
@@ -57,7 +58,9 @@ const App = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:id" element={<BlogPost />} />
-        <Route path="/admin" element={auth ? <Admin /> : <Navigate to="/" />} />
+        <Route path="/admin" element={<PrivateRoute />}>
+          <Route path="/admin" element={<Admin />} />
+        </Route>
       </Routes>
       {contactIsOpen && <Form />}
       <Footer />
